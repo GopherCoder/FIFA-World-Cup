@@ -12,3 +12,5 @@ var (
 	AwardsURL               = "https://www.fifa.com/worldcup/awards/man-of-the-match/"
 	HistoryURL              = "https://www.fifa.com/worldcup/classic/"
 )
+
+var ChromeDriverPath = "D:\\1_System\\1_Package\\chromedriver_win32\\chromedriver"
