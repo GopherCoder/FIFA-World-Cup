@@ -22,7 +22,7 @@ var ChromeDriverPath = "D:\\1_System\\1_Package\\chromedriver_win32\\chromedrive
 
 func init() {
 	viper.SetConfigName("settings")
-	viper.AddConfigPath("./FIFA-World-Cup/infra/config")
+	viper.AddConfigPath("$GOPATH/src/FIFA-World-Cup/infra/config")
 	viper.SetConfigType("yml")
 	err := viper.ReadInConfig()
 	if err != nil {
