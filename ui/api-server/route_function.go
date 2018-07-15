@@ -1,6 +1,9 @@
 package api_server
 
 import (
+	"FIFA-World-Cup/domain"
+	"FIFA-World-Cup/infra/config"
+	"FIFA-World-Cup/infra/download"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -18,6 +21,14 @@ func GroupPhase(c *gin.Context) {
 	// db.create
 
 	// model.serializer
+	docTemp, _ := download.Downloader(config.MatchesURLGroupPhase)
+	domain.MatchesGroupPhase(docTemp)
+
+	//var match model.Match
+	c.JSON(
+		http.StatusOK,
+		"12",
+	)
 
 }
 

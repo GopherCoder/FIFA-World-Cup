@@ -7,8 +7,8 @@ import (
 
 type Team struct {
 	gorm.Model
-	Flag string `gorm:"type: varchar(32); not null; column: flag_address"`
-	Name string `gorm:"type: varchar(32); not null; column: team_name"`
+	Flag string `gorm:"type: varchar(128); not null; column: flag_address"`
+	Name string `gorm:"type: varchar(64); not null; column: team_name"`
 }
 
 type TeamSerializer struct {

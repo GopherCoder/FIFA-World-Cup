@@ -5,10 +5,6 @@ import (
 	"time"
 )
 
-type TeamBaseStatistic struct {
-	gorm.Model
-}
-
 type TeamsStatisticWithTopGoal struct {
 	gorm.Model
 	Rank          int    `gorm:"type: integer; not null; column: rank"`

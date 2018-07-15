@@ -12,8 +12,12 @@ type Match struct {
 	Location     string `gorm:"type:varchar(32); not null; column: location"`
 	CountryLeft  string `gorm:"type:varchar(32); not null; column: country_left"`
 	CountryRight string `gorm:"type:varchar(32); not null; column: country_right"`
-	Score        int    `gorm:"type:integer; not null; column: score"`
+	Score        string `gorm:"type:varchar(32); not null; column: score"`
 	MatchNumber  int    `gorm:"type:integer; not null; column: match_number"`
+}
+
+func (Match) TableName() string {
+	return "matches"
 }
 
 type MatchSerializer struct {
@@ -26,7 +30,7 @@ type MatchSerializer struct {
 	Location     string     `json:"location"`
 	CountryLeft  string     `json:"country_left"`
 	CountryRight string     `json:"country_right"`
-	Score        int        `json:"score"`
+	Score        string     `json:"score"`
 	MatchNumber  int        `json:"match_number"`
 }
 

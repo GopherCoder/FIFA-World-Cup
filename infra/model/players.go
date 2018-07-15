@@ -11,7 +11,7 @@ type Player struct {
 	Name     string `gorm:"type: varchar(12); not null; column: name"`
 	Country  string `gorm:"type: varchar(12); not null; column: country"`
 	Role     string `gorm:"type: varchar(12); not null; column: role"`
-	ImageURL string `gorm:"type: varchar(32); not null; column: image_address"`
+	ImageURL string `gorm:"type: varchar(128); not null; column: image_address"`
 }
 
 type PlaySerializer struct {

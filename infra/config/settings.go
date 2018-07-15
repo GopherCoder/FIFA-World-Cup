@@ -6,16 +6,25 @@ import (
 )
 
 var (
-	MatchesURLGroupPhase    = "https://www.fifa.com/worldcup/matches/?#groupphase"
-	MatchesURLKnockOutPhase = "https://www.fifa.com/worldcup/matches/?#knockoutphase"
-	TeamsURL                = "https://www.fifa.com/worldcup/teams/"
-	GroupsURL               = "https://www.fifa.com/worldcup/groups/"
-	PlayersURL              = "https://www.fifa.com/worldcup/players/browser/"
-	CoachesURL              = "https://www.fifa.com/worldcup/players/coaches/"
-	StatisticsURL           = "https://www.fifa.com/worldcup/statistics/"
-	GoalScoredURL           = "https://www.fifa.com/worldcup/statistics/players/goal-scored"
-	AwardsURL               = "https://www.fifa.com/worldcup/awards/man-of-the-match/"
-	HistoryURL              = "https://www.fifa.com/worldcup/classic/"
+	MatchesURLGroupPhase          = "https://www.fifa.com/worldcup/matches/?#groupphase"
+	MatchesURLKnockOutPhase       = "https://www.fifa.com/worldcup/matches/?#knockoutphase"
+	TeamsURL                      = "https://www.fifa.com/worldcup/teams/"
+	GroupsURL                     = "https://www.fifa.com/worldcup/groups/"
+	PlayersURL                    = "https://www.fifa.com/worldcup/players/browser/"
+	PlayersURLList                = "https://www.fifa.com/worldcup/players/_libraries/byposition/all/_players-list"
+	CoachesURL                    = "https://www.fifa.com/worldcup/players/coaches/"
+	StatisticsURL                 = "https://www.fifa.com/worldcup/statistics/"
+	StatisticsTeamGoalURL         = "https://www.fifa.com/worldcup/statistics/teams/goal-scored"
+	StatisticsTeamShots           = "https://www.fifa.com/worldcup/statistics/teams/shots"
+	StatisticsTeamDisciplinary    = "https://www.fifa.com/worldcup/statistics/teams/disciplinary"
+	StatisticsPlayerGoalScoredURL = "https://www.fifa.com/worldcup/statistics/players/goal-scored"
+	StatisticsPlayerSaves         = "https://www.fifa.com/worldcup/statistics/players/saves"
+	AwardsURL                     = "https://www.fifa.com/worldcup/awards/"
+	HistoryURL                    = "https://www.fifa.com/worldcup/classic/"
+)
+
+var (
+	RootURL = "https://www.fifa.com"
 )
 
 var ChromeDriverPath = "D:\\1_System\\1_Package\\chromedriver_win32\\chromedriver"
