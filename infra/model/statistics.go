@@ -7,16 +7,16 @@ import (
 
 type TeamsStatisticWithTopGoal struct {
 	gorm.Model
-	Rank          int    `gorm:"type: integer; not null; column: rank"`
-	TeamName      string `gorm:"type: varchar(12); not null; column: team_name"`
-	MatchPlayed   int    `gorm:"type: integer; not null; column: matches_payed"`
-	GoalsFor      int    `gorm:"type: integer; not null; column: goals_for"`
-	GoalsScored   int    `gorm:"type: integer; not null; column: goals_scored"`
-	GoalsAgainst  int    `gorm:"type: integer; not null; column: goals_against"`
-	PenaltyGoal   int    `gorm:"type: integer; not null; column: penalty_goal"`
-	OwnGoals      int    `gorm:"type: integer; not null; column: own_goals"`
-	OpenPlayGoals int    `gorm:"type: integer; not null; column: open_play_goals"`
-	SetPieceGoals int    `gorm:"type: integer; not null; column: set_piece_goals"`
+	Rank          int    `gorm:"type:integer; not null; column:rank"`
+	TeamName      string `gorm:"type:varchar(12); not null; column:team_name"`
+	MatchPlayed   int    `gorm:"type:integer; not null; column:matches_payed"`
+	GoalsFor      int    `gorm:"type:integer; not null; column:goals_for"`
+	GoalsScored   int    `gorm:"type:integer; not null; column:goals_scored"`
+	GoalsAgainst  int    `gorm:"type:integer; not null; column:goals_against"`
+	PenaltyGoal   int    `gorm:"type:integer; not null; column:penalty_goal"`
+	OwnGoals      int    `gorm:"type:integer; not null; column:own_goals"`
+	OpenPlayGoals int    `gorm:"type:integer; not null; column:open_play_goals"`
+	SetPieceGoals int    `gorm:"type:integer; not null; column:set_piece_goals"`
 }
 
 type TeamsStatisticWithTopGoalSerializer struct {
@@ -57,13 +57,13 @@ func (ttg *TeamsStatisticWithTopGoal) Serializer() TeamsStatisticWithTopGoalSeri
 
 type TeamStatisticWithAttempts struct {
 	gorm.Model
-	Rank              int    `gorm:"type: integer; not null; column: rank"`
-	TeamName          string `gorm:"type: varchar(12); not null; column: team_name"`
-	MatchPlayed       int    `gorm:"type: integer; not null; column: matches_payed"`
-	Shots             int    `gorm:"type: integer; not null; column: shots_number"`
-	AttemptsOnTarget  int    `gorm:"type: integer; not null; column: attempts_on_target"`
-	AttemptsOffTarget int    `gorm:"type: integer; not null; column: attempts_off_target"`
-	ShotsBlocked      int    `gorm:"type: integer; not null; column: shots_blocked_number"`
+	Rank              int    `gorm:"type:integer; not null; column:rank"`
+	TeamName          string `gorm:"type:varchar(12); not null; column:team_name"`
+	MatchPlayed       int    `gorm:"type:integer; not null; column:matches_payed"`
+	Shots             int    `gorm:"type:integer; not null; column:shots_number"`
+	AttemptsOnTarget  int    `gorm:"type:integer; not null; column:attempts_on_target"`
+	AttemptsOffTarget int    `gorm:"type:integer; not null; column:attempts_off_target"`
+	ShotsBlocked      int    `gorm:"type:integer; not null; column:shots_blocked_number"`
 }
 
 type TeamStatisticWithAttemptsSerializer struct {
@@ -98,15 +98,15 @@ func (tta *TeamStatisticWithAttempts) Serializer() TeamStatisticWithAttemptsSeri
 
 type TeamStatisticWithDisciplinary struct {
 	gorm.Model
-	Rank                int    `gorm:"type: integer; not null; column: rank"`
-	TeamName            string `gorm:"type: varchar(12); not null; column: team_name"`
-	MatchPlayed         int    `gorm:"type: integer; not null; column: matches_payed"`
-	YellowCards         int    `gorm:"type: integer; default(0); column: yellow_cards"`
-	SecondYellow        int    `gorm:"type: integer; default(0); column: second_yellow_cards"`
-	RedCards            int    `gorm:"type: integer; default(0); column: red_cards"`
-	FoulsCommitted      int    `gorm:"type: integer; default(0); column: fouls_committed"`
-	FoulsSuffered       int    `gorm:"type: integer; default(0); column: fouls_suffered"`
-	FoulsCausingPenalty int    `gorm:"type: integer; default(0); column: fouls_causing_penalty"`
+	Rank                int    `gorm:"type:integer; not null; column:rank"`
+	TeamName            string `gorm:"type:varchar(12); not null; column:team_name"`
+	MatchPlayed         int    `gorm:"type:integer; not null; column:matches_payed"`
+	YellowCards         int    `gorm:"type:integer; default(0); column:yellow_cards"`
+	SecondYellow        int    `gorm:"type:integer; default(0); column:second_yellow_cards"`
+	RedCards            int    `gorm:"type:integer; default(0); column:red_cards"`
+	FoulsCommitted      int    `gorm:"type:integer; default(0); column:fouls_committed"`
+	FoulsSuffered       int    `gorm:"type:integer; default(0); column:fouls_suffered"`
+	FoulsCausingPenalty int    `gorm:"type:integer; default(0); column:fouls_causing_penalty"`
 }
 
 type TeamStatisticWithDisciplinarySerializer struct {
@@ -145,16 +145,16 @@ func (tsd *TeamStatisticWithDisciplinary) Serializer() TeamStatisticWithDiscipli
 
 type PlayersStatisticWithGoalsScored struct {
 	gorm.Model
-	Rank             int    `gorm:"type: integer; not null; column: rank"`
-	PlayerName       string `gorm:"type varchar(12); not null; column: player_name"`
-	GoalsScored      int    `gorm:"type: integer; not null; column: goals_scored"`
-	Assists          int    `gorm:"type: integer; not null; column: assists"`
-	MinutesPlayed    int    `gorm:"type: integer; not null; column: minutes_played"`
-	MatchesPlayed    int    `gorm:"type: integer; not null; column: matches_played"`
-	PenaltiesScored  int    `gorm:"type: integer; not null; column: penalties_scored"`
-	GoalsScoredLeft  int    `gorm:"type: integer; default(0); column: goals_scored_left"`
-	GoalsScoredRight int    `gorm:"type: integer; default(0); column: goals_scored_right"`
-	HeadedGoals      int    `gorm:"type: integer; default(0); column: headed_goals"`
+	Rank             int    `gorm:"type:integer; not null; column:rank"`
+	PlayerName       string `gorm:"type:varchar(12); not null; column:player_name"`
+	GoalsScored      int    `gorm:"type:integer; not null; column:goals_scored"`
+	Assists          int    `gorm:"type:integer; not null; column:assists"`
+	MinutesPlayed    int    `gorm:"type:integer; not null; column:minutes_played"`
+	MatchesPlayed    int    `gorm:"type:integer; not null; column:matches_played"`
+	PenaltiesScored  int    `gorm:"type:integer; not null; column:penalties_scored"`
+	GoalsScoredLeft  int    `gorm:"type:integer; default(0); column:goals_scored_left"`
+	GoalsScoredRight int    `gorm:"type:integer; default(0); column:goals_scored_right"`
+	HeadedGoals      int    `gorm:"type:integer; default(0); column:headed_goals"`
 }
 
 type PlayersStatisticWithGoalsScoredSerializer struct {
@@ -195,12 +195,12 @@ func (pss *PlayersStatisticWithGoalsScored) Serializer() PlayersStatisticWithGoa
 
 type PlayersStatisticWithTopSave struct {
 	gorm.Model
-	Rank          int    `gorm:"type: integer; not null; column: rank"`
-	PlayerName    string `gorm:"type: varchar(12); not null; column: player_name"`
-	MatchedPlayed int    `gorm:"type: integer; not null; column: matched_played"`
-	MinutesPlayed int    `gorm:"type: integer; not null; column: minutes_played"`
-	Saves         int    `gorm:"type: integer; default(0); column: saves_number"`
-	SaveRate      string `gorm:"type varchar(12); column: save_rate"`
+	Rank          int    `gorm:"type:integer; not null; column:rank"`
+	PlayerName    string `gorm:"type:varchar(32); not null; column:player_name"`
+	MatchedPlayed int    `gorm:"type:integer; column:matched_played"`
+	MinutesPlayed int    `gorm:"type:integer; column:minutes_played"`
+	Saves         int    `gorm:"type:integer; default(0); column:saves_number"`
+	SaveRate      string `gorm:"type:varchar(20); column:save_rate"`
 }
 
 type PlayersStatisticWithTopSaveSerializer struct {
@@ -233,14 +233,14 @@ func (pts *PlayersStatisticWithTopSave) Serializer() PlayersStatisticWithTopSave
 
 type PlayersStatisticWithShot struct {
 	gorm.Model
-	Rank              int    `gorm:"type: integer; not null; column: rank"`
-	Player            string `gorm:"type: varchar(12); not null; column: player_name"`
-	MatchesPlayed     int    `gorm:"type: integer; not null; column: matches_played"`
-	MinutesPlayed     int    `gorm:"type: integer; not null; column: minutes_played"`
-	Shots             int    `gorm:"type: integer; not null; column: shots_number"`
-	AttemptsOnTarget  int    `gorm:"type: integer; not null; column: attempts_On_target"`
-	AttemptsOffTarget int    `gorm:"type: integer; not null; column: attempts_off_target"`
-	ShotsBlocked      int    `gorm:"type: integer; default(0); column: shots_blocked"`
+	Rank              int    `gorm:"type:integer; not null; column:rank"`
+	Player            string `gorm:"type:varchar(32); not null; column:player_name"`
+	MatchesPlayed     int    `gorm:"type:integer;column:matches_played"`
+	MinutesPlayed     int    `gorm:"type:integer;column:minutes_played"`
+	Shots             int    `gorm:"type:integer;column:shots_number"`
+	AttemptsOnTarget  int    `gorm:"type:integer;column:attempts_On_target"`
+	AttemptsOffTarget int    `gorm:"type:integer;column:attempts_off_target"`
+	ShotsBlocked      int    `gorm:"type:integer;column:shots_blocked"`
 }
 
 type PlayersStatisticWithShotSerializer struct {
@@ -277,15 +277,15 @@ func (ps *PlayersStatisticWithShot) Serializer() PlayersStatisticWithShotSeriali
 
 type PlayersStatisticWithDisciplinary struct {
 	gorm.Model
-	Rank                int    `gorm:"type: integer; not null; column: rank"`
-	PlayerName          string `gorm:"type: varchar(12); not null; column: player_name"`
-	MatchPlayed         int    `gorm:"type: integer; not null; column: matches_payed"`
-	YellowCards         int    `gorm:"type: integer; default(0); column: yellow_cards"`
-	SecondYellow        int    `gorm:"type: integer; default(0); column: second_yellow_cards"`
-	RedCards            int    `gorm:"type: integer; default(0); column: red_cards"`
-	FoulsCommitted      int    `gorm:"type: integer; default(0); column: fouls_committed"`
-	FoulsSuffered       int    `gorm:"type: integer; default(0); column: fouls_suffered"`
-	FoulsCausingPenalty int    `gorm:"type: integer; default(0); column: fouls_causing_penalty"`
+	Rank                int    `gorm:"type:integer; not null; column:rank"`
+	PlayerName          string `gorm:"type:varchar(64); not null; column:player_name"`
+	MatchPlayed         int    `gorm:"type:integer;column:matches_payed"`
+	YellowCards         int    `gorm:"type:integer;column:yellow_cards"`
+	SecondYellow        int    `gorm:"type:integer;column:second_yellow_cards"`
+	RedCards            int    `gorm:"type:integer;column:red_cards"`
+	FoulsCommitted      int    `gorm:"type:integer;column:fouls_committed"`
+	FoulsSuffered       int    `gorm:"type:integer;column:fouls_suffered"`
+	FoulsCausingPenalty int    `gorm:"type:integer;column:fouls_causing_penalty"`
 }
 
 type PlayersStatisticWithDisciplinarySerializer struct {

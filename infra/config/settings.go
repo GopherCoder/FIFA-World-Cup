@@ -19,6 +19,8 @@ var (
 	StatisticsTeamDisciplinary    = "https://www.fifa.com/worldcup/statistics/teams/disciplinary"
 	StatisticsPlayerGoalScoredURL = "https://www.fifa.com/worldcup/statistics/players/goal-scored"
 	StatisticsPlayerSaves         = "https://www.fifa.com/worldcup/statistics/players/saves"
+	StatisticsPlayerShots         = "https://www.fifa.com/worldcup/statistics/players/shots"
+	StatisticsPlayerDisciplinary  = "https://www.fifa.com/worldcup/statistics/players/disciplinary"
 	AwardsURL                     = "https://www.fifa.com/worldcup/awards/"
 	HistoryURL                    = "https://www.fifa.com/worldcup/classic/"
 )

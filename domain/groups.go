@@ -2,6 +2,7 @@ package domain
 
 import (
 	"FIFA-World-Cup/infra/adapter"
+	"FIFA-World-Cup/infra/init"
 	"FIFA-World-Cup/infra/model"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
@@ -14,12 +15,22 @@ var (
 )
 
 func Groups(doc *goquery.Document) error {
-	doc.Find("div.fi-standings-list table").Each(func(i int, selection *goquery.Selection) {
-		if _, ok := selection.Find("tbody tr").Attr("data-team-id"); ok != true {
+	count := 0
+
+	groupsList := make([]string, 0, 0)
+
+	doc.Find("div.fi-standings-list table caption").Each(func(i int, selection *goquery.Selection) {
+		group := selection.Find("p").Eq(0).Text()
+		groupsList = append(groupsList, group)
+	})
+
+	doc.Find("div.fi-standings-list table tbody tr").Each(func(i int, selection *goquery.Selection) {
+		//index := 0
+		if _, ok := selection.Attr("data-team-id"); ok != true {
 			return
 		}
-		GN := selection.Find("caption p").Eq(0).Text()
-		CN := adapter.StringClear(selection.Find("tbody tr td.fi-table__teamname.teamname-nolink div div").Eq(1).Find("span").Eq(0).Text())
+		GN := groupsList[count/4]
+		CN := adapter.StringClear(selection.Find("tbody tr td.fi-table__teamname.teamname-nolink div div.fi-t__n").Find("span").Eq(0).Text())
 		MP, _ := strconv.Atoi(selection.Find("tbody tr td.fi-table__matchplayed span").Text())
 		W, _ := strconv.Atoi(selection.Find("tbody tr td.fi-table__win span").Text())
 		D, _ := strconv.Atoi(selection.Find("tbody tr td.fi-table__draw span").Text())
@@ -28,7 +39,7 @@ func Groups(doc *goquery.Document) error {
 		GA, _ := strconv.Atoi(selection.Find("tbody tr tb.fi-table__goalagainst span").Text())
 		DG, _ := strconv.Atoi(selection.Find("tbody tr tb.fi-table__diffgoal span").Text())
 		PTS, _ := strconv.Atoi(selection.Find("tbody tr td.fi-table__pts span").Text())
-		//fmt.Println(CN, MP, W, D, L, GF, GA, DG, PTS)
+		fmt.Println(GN, CN, MP, W, D, L, GF, GA, DG, PTS)
 
 		oneGroup := model.Group{
 			GroupName:   GN,
@@ -43,9 +54,12 @@ func Groups(doc *goquery.Document) error {
 			Points:      PTS,
 		}
 		fmt.Println(oneGroup)
+		count++
 		// push data into db
+		initiator.POSTGRES.Save(&oneGroup)
 
 	})
+	fmt.Println(count)
 	return nil
 
 }

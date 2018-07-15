@@ -1,10 +1,10 @@
 package model
 
 type Award struct {
-	ID        uint   `gorm:"type: integer(12); not null; primary key; column: id"`
-	AwardName string `gorm:"type: varchar(64); not null; column: award_name"`
-	URL       string `gorm:"type: varchar(128); not null; column: url"`
-	Info      string `gorm:"type: varchar(128); not null; column: info"`
+	ID        uint   `gorm:"primary_key;column:id"`
+	AwardName string `gorm:"type:varchar(64);not null;column:award_name"`
+	URL       string `gorm:"type:varchar(128);not null;column:url"`
+	Info      string `gorm:"type:varchar(128);not null;column:info"`
 }
 
 type AwardSerializer struct {

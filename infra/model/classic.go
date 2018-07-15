@@ -7,15 +7,15 @@ import (
 
 type WorldCupArchive struct {
 	gorm.Model
-	URL         string `gorm:"type: varchar(128); not null; column: world_cup_url"`
-	Name        string `gorm:"type: varchar(32); not null; column: country_name"`
-	Year        string `gorm:"type: varchar(32); not null; column: year"`
-	Winner      string `gorm:"type: varchar(32); not null; column: winner_country"`
-	RunnersUp   string `gorm:"type: varChar(32); not null; column: runners_up_name"`
-	Third       string `gorm:"type: varchar(32); not null; column: third_name"`
-	Fourth      string `gorm:"type: varchar(32); not null; column: fourth_name"`
-	FinalResult string `gorm:"type: varchar(12); not null; column: final_result"`
-	Title       string `gorm:"type: varchar(32); not null; column: age"`
+	URL         string `gorm:"type:varchar(128);column:world_cup_url"`
+	Name        string `gorm:"type:varchar(128);column:country_name"`
+	Year        string `gorm:"type:varchar(64);column:year"`
+	Winner      string `gorm:"type:varchar(64);column:winner_country"`
+	RunnersUp   string `gorm:"type:varChar(64);column:runners_up_name"`
+	Third       string `gorm:"type:varchar(64);column:third_name"`
+	Fourth      string `gorm:"type:varchar(64);column:fourth_name"`
+	FinalResult string `gorm:"type:varchar(128);column:final_result"`
+	Title       string `gorm:"type:varchar(64);column:title"`
 }
 
 type WorldCupArchiveSerializer struct {

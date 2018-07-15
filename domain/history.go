@@ -4,6 +4,7 @@ import (
 	"FIFA-World-Cup/infra/adapter"
 	"FIFA-World-Cup/infra/config"
 	"FIFA-World-Cup/infra/download"
+	"FIFA-World-Cup/infra/init"
 	"FIFA-World-Cup/infra/model"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
@@ -18,6 +19,7 @@ var (
 func Histories(doc *goquery.Document) error {
 
 	var err error
+	count := 0
 
 	doc.Find("div.d3-o-media-object__body.fi-o-media-object__body").Each(func(i int, selection *goquery.Selection) {
 		if selection.Find("span").Length() != 1 {
@@ -31,12 +33,17 @@ func Histories(doc *goquery.Document) error {
 		}
 		completeURL := config.RootURL + Url
 		doc, _ := download.Downloader(completeURL)
-		//callBackForHistories(completeURL, Name, doc)
-		fmt.Println(callBackForHistories(completeURL, Name, doc))
+		oneArchive := model.WorldCupArchive{}
+		oneArchive = callBackForHistories(completeURL, Name, doc)
+		//fmt.Println(callBackForHistories(completeURL, Name, doc))
 
 		// push data into db
+		fmt.Println(oneArchive)
+		initiator.POSTGRES.Save(&oneArchive)
+		count++
 	})
 
+	fmt.Println(count)
 	return nil
 }
 

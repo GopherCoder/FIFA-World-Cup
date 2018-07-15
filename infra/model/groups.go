@@ -7,16 +7,16 @@ import (
 
 type Group struct {
 	gorm.Model
-	GroupName   string `gorm:"type: varchar(64); not null; column: group_name"`
-	TeamName    string `gorm:"type: varchar(64); not null; column: team_name"`
-	MatchPlayed int    `gorm:"type: integer; not null; column: match_played"`
-	WinNumber   int    `gorm:"type: integer; not null; column: win_number"`
-	Draw        int    `gorm:"type: integer; not null; column: draw_number"`
-	Lost        int    `gorm:"type: integer; not null; column: lost_number"`
-	GoalFor     int    `gorm:"type: integer; not null; column: goal_number"`
-	GoalAgainst int    `gorm:"type: integer; not null; column: goal_against"`
-	DiffGoal    int    `gorm:"type: integer; not null; column: diff_goal"`
-	Points      int    `gorm:"type: integer; not null; column; points"`
+	GroupName   string `gorm:"type:varchar(64);not null;column:group_name"`
+	TeamName    string `gorm:"type:varchar(64);not null;column:team_name"`
+	MatchPlayed int    `gorm:"type:integer;not null;column:match_played"`
+	WinNumber   int    `gorm:"type:integer;not null;column:win_number"`
+	Draw        int    `gorm:"type:integer;not null;column:draw_number"`
+	Lost        int    `gorm:"type:integer;not null;column:lost_number"`
+	GoalFor     int    `gorm:"type:integer;not null;column:goal_number"`
+	GoalAgainst int    `gorm:"type:integer;not null;column:goal_against"`
+	DiffGoal    int    `gorm:"type:integer;not null;column:diff_goal"`
+	Points      int    `gorm:"type:integer;not null;column:points"`
 }
 
 type GroupSerializer struct {

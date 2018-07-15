@@ -2,6 +2,7 @@ package domain
 
 import (
 	"FIFA-World-Cup/infra/adapter"
+	"FIFA-World-Cup/infra/init"
 	"FIFA-World-Cup/infra/model"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
@@ -35,6 +36,7 @@ func Players(doc *goquery.Document) error {
 		count++
 		fmt.Println(onePlayer)
 		// push data into db
+		initiator.POSTGRES.Save(&onePlayer)
 	})
 	fmt.Println(count)
 
@@ -59,6 +61,8 @@ func Coaches(doc *goquery.Document) error {
 		count++
 		fmt.Println(oneCoach)
 		// push data into db
+		initiator.POSTGRES.Save(&oneCoach)
+
 	})
 	fmt.Println(count)
 	return nil

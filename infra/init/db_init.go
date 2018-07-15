@@ -14,23 +14,23 @@ func init() {
 	//db init
 	connectString := config.GetPostGreConfig()
 	fmt.Println(connectString)
-	POSTGRES, err := gorm.Open(
+	connect, err := gorm.Open(
 		"postgres",
 		connectString,
 	)
-
+	connect.LogMode(true)
 	if err != nil {
 		fmt.Println(err)
 		panic("connect postGre failed")
 	}
-	defer POSTGRES.Close()
-	//start()
+	fmt.Println("Login postgre database success!")
+	POSTGRES = connect
+	//defer POSTGRES.Close()
 
 }
 
-func start() {
-	POSTGRES.AutoMigrate(
-		&model.Match{},
+func StartTable() {
+	POSTGRES.AutoMigrate(&model.Match{},
 		&model.Award{},
 		&model.Coach{},
 		&model.Group{},

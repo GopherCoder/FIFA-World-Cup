@@ -84,3 +84,35 @@ func TestPlayersTopSaves(t *testing.T) {
 		PlayersTopSaves(test.doc)
 	}
 }
+
+func TestPlayersShots(t *testing.T) {
+	doc, _ := download.Downloader(config.StatisticsPlayerShots)
+
+	tests := []struct {
+		doc *goquery.Document
+	}{
+		{
+			doc: doc,
+		},
+	}
+
+	for _, test := range tests {
+		PlayersShots(test.doc)
+	}
+}
+
+func TestPlayersDisciplinary(t *testing.T) {
+	doc, _ := download.Downloader(config.StatisticsPlayerDisciplinary)
+
+	tests := []struct {
+		doc *goquery.Document
+	}{
+		{
+			doc: doc,
+		},
+	}
+
+	for _, test := range tests {
+		PlayersDisciplinary(test.doc)
+	}
+}

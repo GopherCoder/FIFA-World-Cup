@@ -3,6 +3,7 @@ package domain
 import (
 	"FIFA-World-Cup/infra/config"
 	"FIFA-World-Cup/infra/download"
+	"FIFA-World-Cup/infra/init"
 	"FIFA-World-Cup/infra/model"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
@@ -37,6 +38,7 @@ func Awards(doc *goquery.Document) error {
 		for _, award := range awards {
 			fmt.Println(award)
 			// push data into db
+			initiator.POSTGRES.Save(&award)
 
 		}
 	})

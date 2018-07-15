@@ -7,11 +7,11 @@ import (
 
 type Player struct {
 	gorm.Model
-	Number   int    `gorm:"type: integer; not null; column: number"`
-	Name     string `gorm:"type: varchar(12); not null; column: name"`
-	Country  string `gorm:"type: varchar(12); not null; column: country"`
-	Role     string `gorm:"type: varchar(12); not null; column: role"`
-	ImageURL string `gorm:"type: varchar(128); not null; column: image_address"`
+	Number   int    `gorm:"type: integer; not null; column:number"`
+	Name     string `gorm:"type: varchar(64); not null; column:name"`
+	Country  string `gorm:"type: varchar(64); not null; column:country"`
+	Role     string `gorm:"type: varchar(64); not null; column:role"`
+	ImageURL string `gorm:"type: varchar(128); not null; column:image_address"`
 }
 
 type PlaySerializer struct {
@@ -42,9 +42,9 @@ func (p *Player) Serializer() PlaySerializer {
 
 type Coach struct {
 	gorm.Model
-	CountryName string `gorm:"type: varchar(32); not null; column: country_name"`
-	Name        string `gorm:"type: varchar(32); not null; column: name"`
-	ImageURL    string `gorm:"type: varchar(64); not null; column: image_address"`
+	CountryName string `gorm:"type:varchar(64); not null; column:country_name"`
+	Name        string `gorm:"type:varchar(64); not null; column:name"`
+	ImageURL    string `gorm:"type:varchar(128); not null; column:image_address"`
 }
 
 type CoachSerializer struct {

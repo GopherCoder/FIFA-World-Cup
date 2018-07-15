@@ -5,6 +5,7 @@ import (
 
 	"FIFA-World-Cup/infra/adapter"
 
+	"FIFA-World-Cup/infra/init"
 	"FIFA-World-Cup/infra/model"
 	"github.com/PuerkitoBio/goquery"
 	"strconv"
@@ -43,7 +44,7 @@ func MatchesGroupPhase(doc *goquery.Document) error {
 		//fmt.Println(date, groupName, location, countryLeft, countryRight, score, matchNumber)
 
 		fmt.Println(matches)
-		//initiator.POSTGRES.Create(&matches)
+		initiator.POSTGRES.Create(&matches)
 
 	})
 	return nil
