@@ -4,16 +4,16 @@
 APP_NAME = "fwc"
 
 default:
-    go build -o ${APP_NAME} $GOPATH/FIFA-World-Cup/main/main.go
+	go build -o ${APP_NAME} main/main.go
 
 install:
-    govendor sync -v
+	govendor sync -v
 
 dev:
-    fresh -c $GOPATH/FIFA-World-Cup/configs/development.conf
+	fresh -c configs/development.conf
 
 clean:
-    if [ -f ${APP_NAME} ]; then rm ${APP_NAME}; fi
+	if [ -f ${APP_NAME} ]; then rm ${APP_NAME}; fi
 
 
 
