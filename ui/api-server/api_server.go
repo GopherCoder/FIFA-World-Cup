@@ -68,8 +68,9 @@ func indexRegistry(index *gin.RouterGroup) {
 }
 
 func matchesRegistry(matches *gin.RouterGroup) {
-	matches.GET("/matches/group", GroupPhase)
-	matches.GET("/matches/knockout", KnockOutPhase)
+	// matches/groups/:id
+	// matches/groups/:
+	matches.GET("/matches/groups/:id", GroupPhase)
 
 }
 

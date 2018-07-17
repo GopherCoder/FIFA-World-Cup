@@ -18,30 +18,30 @@ var (
 
 func Awards(doc *goquery.Document) error {
 	var err error
-	doc.Find("div.fi-module-latest-news__carousel div div.d3-o-media-object--vertical.fi-o-media-object__teaser").Each(func(i int, selection *goquery.Selection) {
-		url, ok := selection.Find("div div a").Attr("href")
-		if ok != true {
-			err = ErrorAwardUrl
-			return
-		}
+	count := 0
+	urlList := make([]string, 0, 0)
+	urlList = append(urlList, "/worldcup/awards/golden-boot/")
+	urlList = append(urlList, "/worldcup/awards/golden-glove/")
+	urlList = append(urlList, "/worldcup/awards/golden-ball/")
+	for _, url := range urlList {
 		completeAwardURl := config.RootURL + url
-		if !strings.Contains(url, "golden") {
-			return
-		}
 		doc, err := download.Downloader(completeAwardURl)
 		if err != nil {
 			err = ErrorAwardDownloader
-			return
+			break
 		}
 		// db save
 		awards := callBack(completeAwardURl, doc)
+		fmt.Println(completeAwardURl)
 		for _, award := range awards {
 			fmt.Println(award)
+			count++
 			// push data into db
 			initiator.POSTGRES.Save(&award)
 
 		}
-	})
+	}
+	fmt.Println(count)
 
 	return err
 }
