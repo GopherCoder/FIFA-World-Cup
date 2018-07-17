@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	// 1. create table by gorm aut migrate
+	// 1. create table by gorm auto migrate
 	initiator.StartTable()
 	defer initiator.POSTGRES.Close()
 
