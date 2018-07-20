@@ -13,9 +13,20 @@ import (
 	"fmt"
 	"net/http"
 
+	"FIFA-World-Cup/ui/api-server/admins"
 	"github.com/gin-gonic/gin"
 	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/gin-swagger/swaggerFiles"
+	"strings"
+
+	"FIFA-World-Cup/infra/init"
+	"FIFA-World-Cup/infra/model"
+	"github.com/pkg/errors"
+)
+
+var (
+	ErrorAuth      = errors.New("Please add token: 'Authorization: Bearer xxxx'")
+	ErrorAuthWrong = errors.New("Token is not right，example: Bearer xxxx")
 )
 
 type APIServer struct {
@@ -59,17 +70,58 @@ func APIServerInit(r *gin.Engine) {
 		}
 	})
 	v1 := r.Group("/v1/api")
-
 	indexRegistry(v1)
-	matchesRegistry(v1)
-	teamsRegistry(v1)
-	groupsRegistry(v1)
-	playerRegistry(v1)
-	coachesRegistry(v1)
-	statisticsRegistry(v1)
-	awardsRegistry(v1)
-	classicRegistry(v1)
+	adminsRegistry(v1)
 
+	v1.Use(AuthRequired())
+	{
+		matchesRegistry(v1)
+		teamsRegistry(v1)
+		groupsRegistry(v1)
+		playerRegistry(v1)
+		coachesRegistry(v1)
+		statisticsRegistry(v1)
+		awardsRegistry(v1)
+		classicRegistry(v1)
+
+	}
+
+}
+
+func AuthRequired() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// Step 0: check is readsense app or not
+		if vendor := c.Request.Header.Get("X-Requested-With"); vendor != "" {
+			c.Set("X-Requested-With", vendor)
+		}
+
+		// Step 1: check Authorization
+		header := c.Request.Header.Get("Authorization")
+		if header == "" {
+			c.AbortWithError(400, ErrorAuth)
+			return
+		}
+
+		// Step 2: check Bearer
+		authHeader := strings.Split(header, " ")
+
+		if len(authHeader) != 2 {
+			c.AbortWithError(400, ErrorAuthWrong)
+			return
+		}
+
+		// Step 3: check auth_token
+		token := authHeader[1]
+
+		var admin model.Admin
+		fmt.Println(token)
+		if dbError := initiator.POSTGRES.Where("auth_token = ?", token).First(&admin).Error; dbError != nil {
+			c.AbortWithError(400, dbError)
+		} else {
+			c.Set("current_admin", admin)
+			c.Next()
+		}
+	}
 }
 
 func indexRegistry(r *gin.RouterGroup) {
@@ -82,6 +134,12 @@ func HelloWorld(c *gin.Context) {
 		http.StatusOK, gin.H{
 			"message": "Hello World! FIFA world Cup 2018"},
 	)
+}
+
+func adminsRegistry(r *gin.RouterGroup) {
+	r.POST("/admins/sign_in", admins.SignIn)
+	r.POST("/admins/sign_up", admins.SignUp)
+
 }
 
 func matchesRegistry(r *gin.RouterGroup) {

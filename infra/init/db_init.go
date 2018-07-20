@@ -44,5 +44,6 @@ func StartTable() {
 		&model.PlayersStatisticWithTopSave{},
 		&model.PlayersStatisticWithShot{},
 		&model.PlayersStatisticWithDisciplinary{},
+		&model.Admin{},
 	)
 }
