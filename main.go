@@ -2,6 +2,7 @@ package main
 
 import (
 	"FIFA-World-Cup/infra/init"
+	"FIFA-World-Cup/infra/model"
 	"FIFA-World-Cup/ui/api-server"
 )
 
@@ -26,7 +27,7 @@ import (
 func main() {
 
 	// 1. create table by gorm auto migrate
-	initiator.StartTable()
+	StartTable()
 	defer initiator.POSTGRES.Close()
 
 	// 2. push data into db
@@ -35,6 +36,25 @@ func main() {
 
 	// 3. start http server
 	api_server.New().Start()
+}
+
+func StartTable() {
+	initiator.POSTGRES.AutoMigrate(&model.Match{},
+		&model.Award{},
+		&model.Coach{},
+		&model.Group{},
+		&model.Team{},
+		&model.Player{},
+		&model.WorldCupArchive{},
+		&model.TeamsStatisticWithTopGoal{},
+		&model.TeamStatisticWithAttempts{},
+		&model.TeamStatisticWithDisciplinary{},
+		&model.PlayersStatisticWithGoalsScored{},
+		&model.PlayersStatisticWithTopSave{},
+		&model.PlayersStatisticWithShot{},
+		&model.PlayersStatisticWithDisciplinary{},
+		&model.Admin{},
+	)
 }
 
 func PushDataIntoDB() {
