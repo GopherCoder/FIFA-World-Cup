@@ -48,6 +48,7 @@ func ListMatchHandler(c *gin.Context) {
 		c.AbortWithError(400, err)
 		return
 	}
+
 	var matches []model.Match
 
 	if param.Search != "" {

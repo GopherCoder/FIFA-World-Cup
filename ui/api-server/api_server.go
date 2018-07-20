@@ -140,6 +140,7 @@ func classicRegistry(r *gin.RouterGroup) {
 }
 
 func (a *APIServer) Start() {
+	a.registry()
 	a.engine.Run(":5000")
 }
 
