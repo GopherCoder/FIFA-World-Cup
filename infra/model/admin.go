@@ -1,7 +1,11 @@
 package model
 
 import (
+	"FIFA-World-Cup/infra/crypt"
+	"FIFA-World-Cup/infra/init"
 	"github.com/jinzhu/gorm"
+	"github.com/swaggo/swag/example/celler/model"
+	"golang.org/x/crypto/bcrypt"
 	"time"
 )
 
@@ -42,8 +46,26 @@ func (a *Admin) Serializer() AdminSerializer {
 
 func (a *Admin) UpdatePassWord(password string) {
 
+	var newPassword string
+	newPassword = cryptutils.PassWordEncrypted(password)
+	oldAuthToken := a.AuthToken
+	a.EncryptedPassword = newPassword
+
+	var admin model.Admin
+	if dbError := initiator.POSTGRES.Where("auth_token = ?", oldAuthToken).First(&admin).Error; dbError != nil {
+		panic("no exists user")
+	}
+
+	if dbError := initiator.POSTGRES.Save(&admin).Error; dbError != nil {
+		panic("update error")
+	}
+	return
+
 }
 
 func (a *Admin) PasswordCheck(password string) bool {
+	if err := bcrypt.CompareHashAndPassword([]byte(a.EncryptedPassword), []byte(password)); err != nil {
+		return false
+	}
 	return true
 }
