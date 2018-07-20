@@ -146,15 +146,15 @@ func (tsd *TeamStatisticWithDisciplinary) Serializer() TeamStatisticWithDiscipli
 type PlayersStatisticWithGoalsScored struct {
 	gorm.Model
 	Rank             int    `gorm:"type:integer; not null; column:rank"`
-	PlayerName       string `gorm:"type:varchar(12); not null; column:player_name"`
+	PlayerName       string `gorm:"type:varchar(32); not null; column:player_name"`
 	GoalsScored      int    `gorm:"type:integer; not null; column:goals_scored"`
 	Assists          int    `gorm:"type:integer; not null; column:assists"`
 	MinutesPlayed    int    `gorm:"type:integer; not null; column:minutes_played"`
 	MatchesPlayed    int    `gorm:"type:integer; not null; column:matches_played"`
 	PenaltiesScored  int    `gorm:"type:integer; not null; column:penalties_scored"`
-	GoalsScoredLeft  int    `gorm:"type:integer; default(0); column:goals_scored_left"`
-	GoalsScoredRight int    `gorm:"type:integer; default(0); column:goals_scored_right"`
-	HeadedGoals      int    `gorm:"type:integer; default(0); column:headed_goals"`
+	GoalsScoredLeft  int    `gorm:"type:integer; default:0; column:goals_scored_left"`
+	GoalsScoredRight int    `gorm:"type:integer; default:0; column:goals_scored_right"`
+	HeadedGoals      int    `gorm:"type:integer; default:0; column:headed_goals"`
 }
 
 type PlayersStatisticWithGoalsScoredSerializer struct {

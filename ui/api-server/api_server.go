@@ -112,13 +112,20 @@ func coachesRegistry(r *gin.RouterGroup) {
 }
 
 func statisticsRegistry(r *gin.RouterGroup) {
-	r.GET("/statistics/players/goals", statistics.ShowPlayerGoalHandler)
-	r.GET("/statistics/players/saves", statistics.ShowPlayerTopHandler)
-	r.GET("/statistics/players/shots", statistics.ShowPlayerShotHandler)
-	r.GET("/statistics/players/disciplinary", statistics.ShowPlayerDisciplinaryHandler)
-	r.GET("/statistics/teams/goals", statistics.ShowTeamGoalHandler)
-	r.GET("/statistics/teams/shots", statistics.ShowTeamShotHandler)
-	r.GET("/statistics/teams/disciplinary", statistics.ShowTeamDisciplinaryHandler)
+	r.GET("/statistics/players/goals/:rank", statistics.ShowPlayerGoalHandler)
+	r.GET("/statistics/players/goals", statistics.ShowPlayerGoalSearchHandler)
+	r.GET("/statistics/players/saves/:rank", statistics.ShowPlayerTopHandler)
+	r.GET("/statistics/players/saves", statistics.ShowPlayerTopSearchHandler)
+	r.GET("/statistics/players/shots/:rank", statistics.ShowPlayerShotHandler)
+	r.GET("/statistics/players/shots", statistics.ShowPlayerShotSearchHandler)
+	r.GET("/statistics/players/disciplinary/:rank", statistics.ShowPlayerDisciplinaryHandler)
+	r.GET("/statistics/players/disciplinary", statistics.ShowPlayerDisciplinarySearchHandler)
+	r.GET("/statistics/teams/goals/:rank", statistics.ShowTeamGoalHandler)
+	r.GET("/statistics/teams/goals", statistics.ShowTeamGoalSearchHandler)
+	r.GET("/statistics/teams/shots/:rank", statistics.ShowTeamShotHandler)
+	r.GET("/statistics/teams/shots", statistics.ShowTeamShotSearchHandler)
+	r.GET("/statistics/teams/disciplinary/:rank", statistics.ShowTeamDisciplinaryHandler)
+	r.GET("/statistics/teams/disciplinary", statistics.ShowTeamDisciplinarySearchHandler)
 }
 
 func awardsRegistry(r *gin.RouterGroup) {

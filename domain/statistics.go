@@ -136,6 +136,7 @@ func PlayersGoalScored(doc *goquery.Document) error {
 		}
 		// push data into db
 		initiator.POSTGRES.Save(&onePlayerGoalsScored)
+		//fmt.Println(onePlayerGoalsScored)
 	})
 
 	return nil

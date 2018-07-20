@@ -63,7 +63,7 @@ func PushDataIntoDB() {
 	//
 	//urlPlayerGoalsScored := config.StatisticsPlayerGoalScoredURL
 	//docPlayerGoalsScore, _ := download.Downloader(urlPlayerGoalsScored)
-	//domain.PlayersGoalScored(docPlayerGoalsScore) // 缺少数据，注意下
+	//domain.PlayersGoalScored(docPlayerGoalsScore)
 	//
 	//urlPlayersTopSaves := config.StatisticsPlayerSaves
 	//docPlayersTopSaves, _ := download.Downloader(urlPlayersTopSaves)
