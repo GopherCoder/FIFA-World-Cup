@@ -13,7 +13,7 @@ import (
 // groups ...
 
 var (
-	ErrorId = errors.New("id should less than 64")
+	ErrorId = errors.New("id should less than 32")
 )
 
 type ListGroup struct {
@@ -22,6 +22,18 @@ type ListGroup struct {
 	Group  string `form:"group_name"`
 }
 
+// ListGroupPhaseHandler will list  groups
+// @Summary List Groups
+// @Accept json
+// @Tags Groups
+// @Security Bearer
+// @Produce  json
+// @Param search path string false "group id"
+// @Param return path string false "return=all_list"
+// @Param group_name path string false "group_name"
+// @Resource Groups
+// @Router /groups [get]
+// @Success 200 {array} model.GroupSerializer
 func ListGroupPhaseHandler(c *gin.Context) {
 
 	var params ListGroup
@@ -61,7 +73,16 @@ func ListGroupPhaseHandler(c *gin.Context) {
 
 }
 
-// match
+// GroupPhaseHandler will list a group
+// @Summary List Group
+// @Accept json
+// @Tags Groups
+// @Security Bearer
+// @Produce  json
+// @Param groupID path string true "group id"
+// @Resource Groups
+// @Router /groups/{id} [get]
+// @Success 200 {object} model.GroupSerializer
 func GroupPhaseHandler(c *gin.Context) {
 
 	number, _ := strconv.Atoi(c.Param("groupID"))
@@ -71,18 +92,16 @@ func GroupPhaseHandler(c *gin.Context) {
 		return
 	}
 
-	//var match model.Match
+	var group model.Group
 
-	var matches model.Match
-
-	if dbError := initiator.POSTGRES.Where("match_number = ?", number).Find(&matches).Error; dbError != nil {
+	if dbError := initiator.POSTGRES.Where("match_number = ?", number).Find(&group).Error; dbError != nil {
 		c.AbortWithError(404, dbError)
 		return
 	}
 
 	c.JSON(
 		http.StatusOK,
-		matches.Serializer(),
+		group.Serializer(),
 	)
 
 }

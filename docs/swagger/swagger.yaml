@@ -1,5 +1,119 @@
 basePath: /v1/api
 definitions:
+  admins.ListSignInParam:
+    properties:
+      admin:
+        properties:
+          name:
+            example: "18717711819"
+            type: string
+          password:
+            example: xxxxxx
+            type: string
+        required:
+        - name
+        - password
+        type: object
+    type: object
+  admins.ListSignUpParam:
+    properties:
+      admin:
+        properties:
+          name:
+            example: "18717711819"
+            type: string
+          password:
+            example: xxxxx
+            type: string
+          phone:
+            example: "18717711819"
+            type: string
+        required:
+        - name
+        - password
+        - phone
+        type: object
+    type: object
+  model.AdminSerializer:
+    properties:
+      auth_token:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      encrypted_password:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      phone:
+        type: string
+      state:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  model.AwardSerializer:
+    properties:
+      award_name:
+        type: string
+      id:
+        type: integer
+      info:
+        type: string
+      url:
+        type: string
+    type: object
+  model.CoachSerializer:
+    properties:
+      country_name:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      id:
+        type: integer
+      image_url:
+        type: string
+      name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  model.GroupSerializer:
+    properties:
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      diff_goal:
+        type: integer
+      draw_number:
+        type: integer
+      goal_against:
+        type: integer
+      goal_number:
+        type: integer
+      group_name:
+        type: string
+      id:
+        type: integer
+      lost_number:
+        type: integer
+      match_played:
+        type: integer
+      points:
+        type: integer
+      team_name:
+        type: string
+      update_at:
+        type: string
+      win_number:
+        type: integer
+    type: object
   model.MatchSerializer:
     properties:
       country_left:
@@ -25,6 +139,266 @@ definitions:
       update_at:
         type: string
     type: object
+  model.PlaySerializer:
+    properties:
+      country:
+        type: string
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      id:
+        type: integer
+      image_address:
+        type: string
+      name:
+        type: string
+      number:
+        type: integer
+      role:
+        type: string
+      update_at:
+        type: string
+    type: object
+  model.PlayersStatisticWithDisciplinarySerializer:
+    properties:
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      fouls_causing_penalty:
+        type: integer
+      fouls_committed:
+        type: integer
+      fouls_suffered:
+        type: integer
+      id:
+        type: integer
+      match_played:
+        type: integer
+      player_name:
+        type: string
+      rank:
+        type: integer
+      red_cards:
+        type: integer
+      second_yellow:
+        type: integer
+      update_at:
+        type: string
+      yellow_cards:
+        type: integer
+    type: object
+  model.PlayersStatisticWithGoalsScoredSerializer:
+    properties:
+      assists:
+        type: integer
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      goals_scored:
+        type: integer
+      goals_scored_left:
+        type: integer
+      goals_scored_right:
+        type: integer
+      headed_goals:
+        type: integer
+      id:
+        type: integer
+      matches_played:
+        type: integer
+      minutes_played:
+        type: integer
+      penalties_scored:
+        type: integer
+      player_name:
+        type: string
+      rank:
+        type: integer
+      update_at:
+        type: string
+    type: object
+  model.PlayersStatisticWithShotSerializer:
+    properties:
+      attempts_off_target:
+        type: integer
+      attempts_on_target:
+        type: integer
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      id:
+        type: integer
+      matches_played:
+        type: integer
+      minutes_played:
+        type: integer
+      player:
+        type: string
+      rank:
+        type: integer
+      shots:
+        type: integer
+      shots_blocked:
+        type: integer
+      update_at:
+        type: string
+    type: object
+  model.PlayersStatisticWithTopSaveSerializer:
+    properties:
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      id:
+        type: integer
+      matched_played:
+        type: integer
+      minutes_played:
+        type: integer
+      player_name:
+        type: string
+      rank:
+        type: integer
+      save_rate:
+        type: string
+      saves:
+        type: integer
+      update_at:
+        type: string
+    type: object
+  model.TeamSerializer:
+    properties:
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      flag:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  model.TeamStatisticWithAttemptsSerializer:
+    properties:
+      attempts_off_target:
+        type: integer
+      attempts_on_target:
+        type: integer
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      id:
+        type: integer
+      matches_payed:
+        type: integer
+      rank:
+        type: integer
+      shots_blocked_number:
+        type: integer
+      shots_number:
+        type: integer
+      team_name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  model.TeamStatisticWithDisciplinarySerializer:
+    properties:
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      fouls_causing_penalty:
+        type: integer
+      fouls_committed:
+        type: integer
+      fouls_suffered:
+        type: integer
+      id:
+        type: integer
+      match_played:
+        type: integer
+      rank:
+        type: integer
+      red_cards:
+        type: integer
+      second_yellow:
+        type: integer
+      team_name:
+        type: string
+      update_at:
+        type: string
+      yellow_cards:
+        type: integer
+    type: object
+  model.TeamsStatisticWithTopGoalSerializer:
+    properties:
+      created_at:
+        type: string
+      delete_at:
+        type: string
+      goal_for:
+        type: integer
+      goals_against:
+        type: integer
+      goals_scored:
+        type: integer
+      id:
+        type: integer
+      int:
+        type: integer
+      match_played:
+        type: integer
+      open_play_goals:
+        type: integer
+      own_goals:
+        type: integer
+      penalty_goal:
+        type: integer
+      set_piece_goals:
+        type: integer
+      team_name:
+        type: string
+      update_at:
+        type: string
+    type: object
+  model.WorldCupArchiveSerializer:
+    properties:
+      create_at:
+        type: string
+      delete_at:
+        type: string
+      final_result:
+        type: string
+      fourth_name:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      runners_up:
+        type: string
+      third_name:
+        type: string
+      title:
+        type: string
+      update_at:
+        type: string
+      url:
+        type: string
+      winner:
+        type: string
+      year:
+        type: string
+    type: object
 host: 127.0.0.1:5000
 info:
   contact:
@@ -37,6 +411,311 @@ info:
   title: FIFA-World-Cup-2018 API
   version: "1.0"
 paths:
+  /admins/sign_in:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: sign in information
+        in: body
+        name: admin
+        required: true
+        schema:
+          $ref: '#/definitions/admins.ListSignInParam'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AdminSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: Find a count
+      tags:
+      - Admin
+  /admins/sign_up:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: sign up information
+        in: body
+        name: admin
+        required: true
+        schema:
+          $ref: '#/definitions/admins.ListSignUpParam'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AdminSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: create a count
+      tags:
+      - Admin
+  /awards:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: award_name
+        in: path
+        name: search
+        type: string
+      - description: return = all_list
+        in: path
+        name: return
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.AwardSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Awards
+      tags:
+      - Awards
+  /awards/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: award id
+        in: path
+        name: awardID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.AwardSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Awards
+      tags:
+      - Awards
+  /classics:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: final result
+        in: path
+        name: search
+        type: string
+      - description: return = all_list
+        in: path
+        name: return
+        type: string
+      - description: country name
+        in: path
+        name: country_name
+        type: string
+      - description: information
+        in: path
+        name: title
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.WorldCupArchiveSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List History
+      tags:
+      - Classics
+  /classics/{year}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: year
+        in: path
+        name: year
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.WorldCupArchiveSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List History
+      tags:
+      - Classics
+  /coaches:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: coach name
+        in: path
+        name: search
+        type: string
+      - description: return = all_list
+        in: path
+        name: return
+        type: string
+      - description: country name
+        in: path
+        name: country
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.CoachSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Coaches
+      tags:
+      - Coaches
+  /coaches/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: player id
+        in: path
+        name: coachID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.CoachSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Coach
+      tags:
+      - Coaches
+  /groups:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: group id
+        in: path
+        name: search
+        type: string
+      - description: return=all_list
+        in: path
+        name: return
+        type: string
+      - description: group_name
+        in: path
+        name: group_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.GroupSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Groups
+      tags:
+      - Groups
+  /groups/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: group id
+        in: path
+        name: groupID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GroupSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Group
+      tags:
+      - Groups
+  /matches:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: country home name
+        in: query
+        name: search
+        type: string
+      - description: all_list will return all matches
+        in: query
+        name: return
+        type: string
+      - description: match number
+        in: query
+        name: match_number
+        type: string
+      - description: country name
+        in: query
+        name: country_name
+        type: string
+      - description: group name
+        in: query
+        name: group_name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.MatchSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Matches
+      tags:
+      - Match
   /matches/:
     get:
       consumes:
@@ -59,6 +738,437 @@ paths:
       summary: List Match
       tags:
       - Match
+  /players:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: ' player name'
+        in: path
+        name: search
+        type: string
+      - description: return= all_list
+        in: path
+        name: return
+        type: string
+      - description: country name
+        in: path
+        name: country
+        type: string
+      - description: role name
+        in: path
+        name: role
+        type: string
+      - description: number
+        in: path
+        name: number
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.PlaySerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Players
+      tags:
+      - Players
+  /players/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: player id
+        in: path
+        name: playerID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlaySerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Player
+      tags:
+      - Players
+  /statistics/players/disciplinary:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: player name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithDisciplinarySerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Disciplinary
+      tags:
+      - Statistics
+  /statistics/players/disciplinary/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithDisciplinarySerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Disciplinary
+      tags:
+      - Statistics
+  /statistics/players/goals:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: player name
+        in: path
+        name: name
+        type: string
+      - description: goals scored
+        in: path
+        name: goal
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.PlayersStatisticWithGoalsScoredSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Goal
+      tags:
+      - Statistics
+  /statistics/players/goals/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithGoalsScoredSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Goal
+      tags:
+      - Statistics
+  /statistics/players/saves:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithTopSaveSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Saves
+      tags:
+      - Statistics
+  /statistics/players/saves/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithTopSaveSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Saves
+      tags:
+      - Statistics
+  /statistics/players/shots:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithShotSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Shot
+      tags:
+      - Statistics
+  /statistics/players/shots/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.PlayersStatisticWithShotSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Shot
+      tags:
+      - Statistics
+  /statistics/teams/attempts:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: team name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamStatisticWithAttemptsSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Attempts
+      tags:
+      - Statistics
+  /statistics/teams/attempts/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: team name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamStatisticWithAttemptsSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Attempts
+      tags:
+      - Statistics
+  /statistics/teams/disciplinary:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: team name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamStatisticWithDisciplinarySerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Disciplinary
+      tags:
+      - Statistics
+  /statistics/teams/disciplinary/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamStatisticWithDisciplinarySerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Disciplinary
+      tags:
+      - Statistics
+  /statistics/teams/goals:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: team name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamsStatisticWithTopGoalSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Goal
+      tags:
+      - Statistics
+  /statistics/teams/goals/{rank}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: rank number
+        in: path
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamsStatisticWithTopGoalSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Goal
+      tags:
+      - Statistics
+  /teams:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: country home name
+        in: query
+        name: search
+        type: string
+      - description: all_list will return all teams
+        in: query
+        name: return
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.TeamSerializer'
+            type: array
+      security:
+      - Bearer: []
+      summary: List Teams
+      tags:
+      - Teams
+  /teams/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: team id
+        in: path
+        name: teamID
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.TeamSerializer'
+            type: object
+      security:
+      - Bearer: []
+      summary: List Team
+      tags:
+      - Teams
 securityDefinitions:
   Bearer:
     in: header

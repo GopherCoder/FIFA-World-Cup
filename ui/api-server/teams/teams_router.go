@@ -21,7 +21,17 @@ type ListTeamParam struct {
 	Return string `form:"return"`
 }
 
-// teams ...
+// TeamListHandler will list  teams
+// @Summary List Teams
+// @Accept json
+// @Tags Teams
+// @Security Bearer
+// @Produce  json
+// @Param search query string false "country home name"
+// @Param return query string false "all_list will return all teams"
+// @Resource Teams
+// @Router /teams [get]
+// @Success 200 {array} model.TeamSerializer
 func TeamListHandler(c *gin.Context) {
 
 	var param ListTeamParam
@@ -34,7 +44,7 @@ func TeamListHandler(c *gin.Context) {
 	var teams []model.Team
 
 	if param.Search != "" {
-		if dbError := initiator.POSTGRES.Where("search LIKE ?", fmt.Sprintf("%%%s%%", param.Search)).Find(&teams).Error; dbError != nil {
+		if dbError := initiator.POSTGRES.Where("team_name LIKE ?", fmt.Sprintf("%%%s%%", param.Search)).Find(&teams).Error; dbError != nil {
 			c.AbortWithError(404, ErrorTeam)
 			return
 		}
@@ -59,6 +69,16 @@ func TeamListHandler(c *gin.Context) {
 
 }
 
+// TeamHandler will list a team
+// @Summary List Team
+// @Accept json
+// @Tags Teams
+// @Security Bearer
+// @Produce  json
+// @Param teamID path string true "team id"
+// @Resource Teams
+// @Router /teams/{id} [get]
+// @Success 200 {object} model.TeamSerializer
 func TeamHandler(c *gin.Context) {
 	id := c.Param("teamID")
 

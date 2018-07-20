@@ -31,6 +31,16 @@ type ListSignInParam struct {
 	} `json:"admin" binding:"required"`
 }
 
+// SignIn will find  a count
+// @Summary Find a count
+// @Accept json
+// @Tags Admin
+// @Security Bearer
+// @Produce  json
+// @Param admin body admins.ListSignInParam true "sign in information"
+// @Resource Admins
+// @Router /admins/sign_in [post]
+// @Success 200 {object} model.AdminSerializer
 func SignIn(c *gin.Context) {
 
 	var param ListSignInParam
@@ -67,6 +77,16 @@ type ListSignUpParam struct {
 	} `json:"admin" binding:"required"`
 }
 
+// SignUp will create  a count
+// @Summary create a count
+// @Accept json
+// @Tags Admin
+// @Security Bearer
+// @Produce  json
+// @Param admin body admins.ListSignUpParam true "sign up information"
+// @Resource Admins
+// @Router /admins/sign_up [post]
+// @Success 200 {object} model.AdminSerializer
 func SignUp(c *gin.Context) {
 
 	var param ListSignUpParam

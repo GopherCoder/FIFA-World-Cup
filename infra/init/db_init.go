@@ -20,9 +20,9 @@ func init() {
 	connect.LogMode(true)
 	if err != nil {
 		fmt.Println(err)
-		panic("connect postGre failed")
+		panic("connect postgres failed")
 	}
-	fmt.Println("Login postgre database success!")
+	fmt.Println("Login postgres database success!")
 	POSTGRES = connect
 
 }

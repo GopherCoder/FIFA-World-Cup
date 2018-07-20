@@ -16,19 +16,16 @@ var (
 
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Step 0: check is readsense app or not
 		if vendor := c.Request.Header.Get("X-Requested-With"); vendor != "" {
 			c.Set("X-Requested-With", vendor)
 		}
 
-		// Step 1: check Authorization
 		header := c.Request.Header.Get("Authorization")
 		if header == "" {
 			c.AbortWithError(400, ErrorAuth)
 			return
 		}
 
-		// Step 2: check Bearer
 		authHeader := strings.Split(header, " ")
 
 		if len(authHeader) != 2 {
@@ -36,7 +33,6 @@ func AuthRequired() gin.HandlerFunc {
 			return
 		}
 
-		// Step 3: check auth_token
 		token := authHeader[1]
 
 		var admin model.Admin

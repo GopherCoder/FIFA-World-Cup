@@ -15,6 +15,16 @@ var (
 	ErrorPlayerParam = errors.New("player param is not correct")
 )
 
+// ShowPlayersHandler will list a Player
+// @Summary List Player
+// @Accept json
+// @Tags Players
+// @Security Bearer
+// @Produce  json
+// @Param playerID path string true "player id"
+// @Resource Players
+// @Router /players/{id} [get]
+// @Success 200 {object} model.PlaySerializer
 func ShowPlayersHandler(c *gin.Context) {
 	id := c.Param("playerID")
 	number, _ := strconv.Atoi(id)
@@ -43,6 +53,20 @@ type ListPlayerParam struct {
 	Number  string `form:"number"`
 }
 
+// ShowAllPlayersHandler will list Player
+// @Summary List Players
+// @Accept json
+// @Tags Players
+// @Security Bearer
+// @Produce  json
+// @Param search path string false " player name"
+// @Param return path string false "return= all_list"
+// @Param country path string false "country name"
+// @Param role path string false "role name"
+// @Param number path string false "number"
+// @Resource Players
+// @Router /players [get]
+// @Success 200 {array} model.PlaySerializer
 func ShowAllPlayersHandler(c *gin.Context) {
 
 	var param ListPlayerParam

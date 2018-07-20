@@ -51,6 +51,20 @@ type ListMatchParam struct {
 	Group   string `form:"group_name"`
 }
 
+// ListMatchHandler will list  matches
+// @Summary List Matches
+// @Accept json
+// @Tags Match
+// @Security Bearer
+// @Produce  json
+// @Param search query string false "country home name"
+// @Param return query string false "all_list will return all matches"
+// @Param match_number query string false "match number"
+// @Param country_name query string false "country name"
+// @Param group_name query string false "group name"
+// @Resource Match
+// @Router /matches [get]
+// @Success 200 {array} model.MatchSerializer
 func ListMatchHandler(c *gin.Context) {
 	var param ListMatchParam
 	if err := c.ShouldBindQuery(&param); err != nil {

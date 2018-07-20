@@ -13,6 +13,16 @@ var (
 	ErrorAwardParam = errors.New("award param is not correct")
 )
 
+// ShowAwardHandler will list Awards
+// @Summary List Awards
+// @Accept json
+// @Tags Awards
+// @Security Bearer
+// @Produce  json
+// @Param awardID path string true "award id"
+// @Resource Awards
+// @Router /awards/{id} [get]
+// @Success 200 {object} model.AwardSerializer
 func ShowAwardHandler(c *gin.Context) {
 
 	id := c.Param("awardID")
@@ -31,6 +41,17 @@ type ListAwardParam struct {
 	Return string `form:"return"`
 }
 
+// ShowAllAwardHandler will list Awards
+// @Summary List Awards
+// @Accept json
+// @Tags Awards
+// @Security Bearer
+// @Produce  json
+// @Param search path string false "award_name"
+// @param return path string false "return = all_list"
+// @Resource Awards
+// @Router /awards [get]
+// @Success 200 {array} model.AwardSerializer
 func ShowAllAwardHandler(c *gin.Context) {
 
 	var param ListAwardParam

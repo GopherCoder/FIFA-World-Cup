@@ -47,13 +47,15 @@ func APIServerInit(r *gin.Engine) {
 		if err := context.ShouldBindJSON(&welcome); err == nil {
 			if welcome.Greet == "FIFA-World-Cup" && welcome.Words == "Hello World" {
 				context.SecureJSON(
-					http.StatusOK, gin.H{
+					http.StatusOK,
+					gin.H{
 						"status": fmt.Sprintf("%s : %s", welcome.Words, welcome.Greet),
 					},
 				)
 			} else {
 				context.JSON(
-					http.StatusAccepted, gin.H{
+					http.StatusAccepted,
+					gin.H{
 						"err": err.Error(),
 					},
 				)
@@ -86,7 +88,8 @@ func indexRegistry(r *gin.RouterGroup) {
 
 func HelloWorld(c *gin.Context) {
 	c.JSON(
-		http.StatusOK, gin.H{
+		http.StatusOK,
+		gin.H{
 			"message": "Hello World! FIFA world Cup 2018"},
 	)
 }
@@ -98,8 +101,6 @@ func adminsRegistry(r *gin.RouterGroup) {
 }
 
 func matchesRegistry(r *gin.RouterGroup) {
-	// matches/groups/:id
-	// matches/groups
 	r.GET("/matches/:matchID", matches.MatchHandler)
 	r.GET("/matches", matches.ListMatchHandler)
 
@@ -137,8 +138,8 @@ func statisticsRegistry(r *gin.RouterGroup) {
 	r.GET("/statistics/players/disciplinary", statistics.ShowPlayerDisciplinarySearchHandler)
 	r.GET("/statistics/teams/goals/:rank", statistics.ShowTeamGoalHandler)
 	r.GET("/statistics/teams/goals", statistics.ShowTeamGoalSearchHandler)
-	r.GET("/statistics/teams/shots/:rank", statistics.ShowTeamShotHandler)
-	r.GET("/statistics/teams/shots", statistics.ShowTeamShotSearchHandler)
+	r.GET("/statistics/teams/attempts/:rank", statistics.ShowTeamAttemptsHandler)
+	r.GET("/statistics/teams/attempts", statistics.ShowTeamAttemptsSearchHandler)
 	r.GET("/statistics/teams/disciplinary/:rank", statistics.ShowTeamDisciplinaryHandler)
 	r.GET("/statistics/teams/disciplinary", statistics.ShowTeamDisciplinarySearchHandler)
 }

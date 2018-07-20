@@ -13,6 +13,16 @@ var (
 	ErrorClassicParam = errors.New("classic param is not correct")
 )
 
+// ShowAwardHandler will list history
+// @Summary List History
+// @Accept json
+// @Tags Classics
+// @Security Bearer
+// @Produce  json
+// @Param year path string true "year"
+// @Resource Classics
+// @Router /classics/{year} [get]
+// @Success 200 {object} model.WorldCupArchiveSerializer
 func ShowClassicHandler(c *gin.Context) {
 
 	year := c.Param("year")
@@ -34,6 +44,19 @@ type ListClassicParam struct {
 	Title   string `form:"title"`
 }
 
+// ShowAllClassicHandler will list history
+// @Summary List History
+// @Accept json
+// @Tags Classics
+// @Security Bearer
+// @Produce  json
+// @Param search path string false "final result"
+// @Param return path string false "return = all_list"
+// @Param country_name path string false "country name"
+// @Param title path string false "information"
+// @Resource Classics
+// @Router /classics [get]
+// @Success 200 {array} model.WorldCupArchiveSerializer
 func ShowAllClassicHandler(c *gin.Context) {
 
 	var param ListClassicParam

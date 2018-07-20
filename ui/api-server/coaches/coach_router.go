@@ -15,6 +15,16 @@ var (
 	ErrorCoachParam = errors.New("coach param wrong")
 )
 
+// ShowCoachHandler will list a Coach
+// @Summary List Coach
+// @Accept json
+// @Tags Coaches
+// @Security Bearer
+// @Produce  json
+// @Param coachID path string true "player id"
+// @Resource Coaches
+// @Router /coaches/{id} [get]
+// @Success 200 {object} model.CoachSerializer
 func ShowCoachHandler(c *gin.Context) {
 	id := c.Param("coachID")
 
@@ -40,6 +50,18 @@ type ListCoachParam struct {
 	Country string `form:"country"`
 }
 
+// ShowAllCoachHandler will list  Coaches
+// @Summary List Coaches
+// @Accept json
+// @Tags Coaches
+// @Security Bearer
+// @Produce  json
+// @Param search path string false "coach name"
+// @param return path string false "return = all_list"
+// @param country path string false "country name"
+// @Resource Coaches
+// @Router /coaches [get]
+// @Success 200 {array} model.CoachSerializer
 func ShowAllCoachHandler(c *gin.Context) {
 
 	var param ListCoachParam
