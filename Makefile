@@ -4,7 +4,7 @@
 APP_NAME = "fwc"
 
 default:
-	go build -o ${APP_NAME} main/main.go
+	go build -o ${APP_NAME} main.go
 
 install:
 	govendor sync -v

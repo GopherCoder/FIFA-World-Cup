@@ -5,6 +5,24 @@ import (
 	"FIFA-World-Cup/ui/api-server"
 )
 
+// @title FIFA-World-Cup-2018 API
+// @version 1.0
+// @description This is a server for FIFA-World-Cup-2018.
+
+// @contact.name API Support
+// @contact.email wuxiaoshen@shu.edu.cn
+
+// @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host 127.0.0.1:5000
+// @BasePath /v1/api
+
+// @securityDefinitions.apiKey Bearer
+// @type apiKey
+// @in header
+// @name Authorization
+
 func main() {
 
 	// 1. create table by gorm auto migrate

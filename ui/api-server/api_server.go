@@ -1,6 +1,7 @@
 package api_server
 
 import (
+	_ "FIFA-World-Cup/docs"
 	"FIFA-World-Cup/ui/api-server/awards"
 	"FIFA-World-Cup/ui/api-server/classic"
 	"FIFA-World-Cup/ui/api-server/coaches"
@@ -56,7 +57,7 @@ func APIServerInit(r *gin.Engine) {
 			}
 		}
 	})
-	v1 := r.Group("/api")
+	v1 := r.Group("/v1/api")
 
 	indexRegistry(v1)
 	matchesRegistry(v1)

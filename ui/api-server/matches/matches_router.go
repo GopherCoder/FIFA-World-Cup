@@ -13,7 +13,16 @@ var (
 	ErrorMatchNumber = errors.New("number not allow")
 )
 
-// match
+// MatchHandler will list one match
+// @Summary List Match
+// @Accept json
+// @Tags Match
+// @Security Bearer
+// @Produce  json
+// @Param matchID query string false "matchID"
+// @Resource Match
+// @Router /matches/:matchID [get]
+// @Success 200 {object} model.MatchSerializer
 func MatchHandler(c *gin.Context) {
 	id := c.Param("matchID")
 

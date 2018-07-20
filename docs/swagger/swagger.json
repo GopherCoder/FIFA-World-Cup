@@ -1,0 +1,103 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a server for FIFA-World-Cup-2018.",
+        "title": "FIFA-World-Cup-2018 API",
+        "contact": {
+            "name": "API Support",
+            "email": "wuxiaoshen@shu.edu.cn"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "127.0.0.1:5000",
+    "basePath": "/v1/api",
+    "paths": {
+        "/matches/": {
+            "get": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Match"
+                ],
+                "summary": "List Match",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "matchID",
+                        "name": "matchID",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/model.MatchSerializer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.MatchSerializer": {
+            "type": "object",
+            "properties": {
+                "country_left": {
+                    "type": "string"
+                },
+                "country_right": {
+                    "type": "string"
+                },
+                "create_at": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "delete_at": {
+                    "type": "string"
+                },
+                "group_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "location": {
+                    "type": "string"
+                },
+                "match_number": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "string"
+                },
+                "update_at": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
