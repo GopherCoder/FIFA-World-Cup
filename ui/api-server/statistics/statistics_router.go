@@ -269,7 +269,7 @@ func ShowPlayerDisciplinarySearchHandler(c *gin.Context) {
 func ShowTeamGoalHandler(c *gin.Context) {
 	rank := c.Param("rank")
 
-	var goal model.TeamsStatisticWithTopGoal
+	var goal model.TeamStatisticWithTopGoal
 	if dbError := initiator.POSTGRES.Where("rank = ?", rank).First(&goal).Error; dbError != nil {
 		c.JSON(400, c.AbortWithError(400, dbError))
 		return
@@ -302,7 +302,7 @@ func ShowTeamGoalSearchHandler(c *gin.Context) {
 		c.JSON(400, c.AbortWithError(400, err))
 		return
 	}
-	var goal model.TeamsStatisticWithTopGoal
+	var goal model.TeamStatisticWithTopGoal
 
 	if dbError := initiator.POSTGRES.Where("team_name Like ?", fmt.Sprintf("%%%s%%", param.Data.Name)).First(&goal).Error; dbError != nil {
 		c.JSON(400, c.AbortWithError(400, dbError))

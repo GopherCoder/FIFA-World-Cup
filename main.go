@@ -46,7 +46,7 @@ func StartTable() {
 		&model.Team{},
 		&model.Player{},
 		&model.WorldCupArchive{},
-		&model.TeamsStatisticWithTopGoal{},
+		&model.TeamStatisticWithTopGoal{},
 		&model.TeamStatisticWithAttempts{},
 		&model.TeamStatisticWithDisciplinary{},
 		&model.PlayersStatisticWithGoalsScored{},

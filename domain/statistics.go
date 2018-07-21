@@ -11,12 +11,12 @@ import (
 )
 
 var (
-	ErrorTeamsTopGoals = errors.New("error team top goal fail")
+	ErrorTeamTopGoals = errors.New("error team top goal fail")
 )
 
 func TeamsTopGoals(doc *goquery.Document) error {
 	doc.Find("table#goal-scored tbody tr").Each(func(i int, selection *goquery.Selection) {
-		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank.sorting_1 span").Text()))
+		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank span").Text()))
 		teamName := adapter.StringClear(selection.Find("td.fi-table__teamname").Find("a div div.fi-t__n span").Eq(0).Text())
 		MP, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(0).Find("span").Text()))
 		GF, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(1).Find("span").Text()))
@@ -28,7 +28,7 @@ func TeamsTopGoals(doc *goquery.Document) error {
 		SPG, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(7).Find("span").Text()))
 
 		fmt.Println(rank, teamName, MP, GF, GS, GA, PEN, OGF, OPG, SPG)
-		oneTeamsTopGoals := model.TeamsStatisticWithTopGoal{
+		oneTeamTopGoals := model.TeamStatisticWithTopGoal{
 			Rank:          rank,
 			TeamName:      teamName,
 			MatchPlayed:   MP,
@@ -40,8 +40,9 @@ func TeamsTopGoals(doc *goquery.Document) error {
 			OpenPlayGoals: OPG,
 			SetPieceGoals: SPG,
 		}
+		fmt.Println(oneTeamTopGoals)
 		// push data into db
-		initiator.POSTGRES.Save(&oneTeamsTopGoals)
+		initiator.POSTGRES.Save(&oneTeamTopGoals)
 	})
 
 	return nil
@@ -49,7 +50,7 @@ func TeamsTopGoals(doc *goquery.Document) error {
 
 func TeamsShots(doc *goquery.Document) error {
 	doc.Find("table#attacks tbody tr").Each(func(i int, selection *goquery.Selection) {
-		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank.sorting_1 span").Text()))
+		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank span").Text()))
 		teamName := adapter.StringClear(selection.Find("td.fi-table__teamname").Find("a div div.fi-t__n span").Eq(0).Text())
 		MP, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(0).Find("span").Text()))
 		S, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(1).Find("span").Text()))
@@ -77,7 +78,7 @@ func TeamsShots(doc *goquery.Document) error {
 
 func TeamsDisciplinary(doc *goquery.Document) error {
 	doc.Find("table#top-cards tbody tr").Each(func(i int, selection *goquery.Selection) {
-		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank.sorting_1 span").Text()))
+		rank, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__rank span").Text()))
 		teamName := adapter.StringClear(selection.Find("td.fi-table__teamname").Find("a div div.fi-t__n span").Eq(0).Text())
 		MP, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(0).Find("span").Text()))
 		YC, _ := strconv.Atoi(adapter.StringClear(selection.Find("td.fi-table__td").Eq(1).Find("span").Text()))

@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type TeamsStatisticWithTopGoal struct {
+type TeamStatisticWithTopGoal struct {
 	gorm.Model
 	Rank          int    `gorm:"type:integer; not null; column:rank"`
 	TeamName      string `gorm:"type:varchar(12); not null; column:team_name"`
@@ -19,7 +19,7 @@ type TeamsStatisticWithTopGoal struct {
 	SetPieceGoals int    `gorm:"type:integer; not null; column:set_piece_goals"`
 }
 
-type TeamsStatisticWithTopGoalSerializer struct {
+type TeamStatisticWithTopGoalSerializer struct {
 	ID            uint       `json:"id"`
 	CreatedAt     time.Time  `json:"created_at"`
 	UpdateAt      time.Time  `json:"update_at"`
@@ -36,8 +36,8 @@ type TeamsStatisticWithTopGoalSerializer struct {
 	SetPieceGoals int        `json:"set_piece_goals"`
 }
 
-func (ttg *TeamsStatisticWithTopGoal) Serializer() TeamsStatisticWithTopGoalSerializer {
-	return TeamsStatisticWithTopGoalSerializer{
+func (ttg *TeamStatisticWithTopGoal) Serializer() TeamStatisticWithTopGoalSerializer {
+	return TeamStatisticWithTopGoalSerializer{
 		ID:            ttg.ID,
 		CreatedAt:     ttg.CreatedAt,
 		UpdateAt:      ttg.UpdatedAt,

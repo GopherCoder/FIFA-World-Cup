@@ -52,14 +52,14 @@ func ListGroupPhaseHandler(c *gin.Context) {
 
 	if params.Return == "all_list" {
 		if dbError := initiator.POSTGRES.Find(&groups).Error; dbError != nil {
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
 
 	if params.Group != "" {
 		if dbError := initiator.POSTGRES.Where("group_name LIKE ?", fmt.Sprintf("%%%s%%", params.Group)).Find(&groups).Error; dbError != nil {
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
@@ -88,14 +88,14 @@ func GroupPhaseHandler(c *gin.Context) {
 	number, _ := strconv.Atoi(c.Param("groupID"))
 
 	if number > 32 && number < 0 {
-		c.AbortWithError(404, ErrorId)
+		c.JSON(400, c.AbortWithError(404, ErrorId))
 		return
 	}
 
 	var group model.Group
 
-	if dbError := initiator.POSTGRES.Where("match_number = ?", number).Find(&group).Error; dbError != nil {
-		c.AbortWithError(404, dbError)
+	if dbError := initiator.POSTGRES.Where("id = ?", number).First(&group).Error; dbError != nil {
+		c.JSON(400, c.AbortWithError(404, dbError))
 		return
 	}
 

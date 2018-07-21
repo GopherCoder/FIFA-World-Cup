@@ -46,7 +46,7 @@ func SignIn(c *gin.Context) {
 	var param ListSignInParam
 
 	if err := c.ShouldBindJSON(&param); err != nil {
-		c.AbortWithError(400, ErrorAdminSignInParam)
+		c.JSON(400, c.AbortWithError(400, ErrorAdminSignInParam))
 		return
 	}
 
@@ -92,7 +92,7 @@ func SignUp(c *gin.Context) {
 	var param ListSignUpParam
 
 	if err := c.ShouldBindJSON(&param); err != nil {
-		c.AbortWithError(400, ErrorAdminSignInParam)
+		c.JSON(400, c.AbortWithError(400, ErrorAdminSignInParam))
 		return
 	}
 
@@ -101,7 +101,7 @@ func SignUp(c *gin.Context) {
 	var ok bool
 
 	if ok = cryptutils.CheckSignInName(param.Data.Name); ok != true {
-		c.AbortWithError(400, ErrorAdminSignName)
+		c.JSON(400, c.AbortWithError(400, ErrorAdminSignName))
 		return
 	}
 
@@ -123,7 +123,7 @@ func SignUp(c *gin.Context) {
 		State:             StateAdmin,
 	}
 	if dbError := initiator.POSTGRES.Create(&newAdmin).Error; dbError != nil {
-		c.AbortWithError(400, dbError)
+		c.JSON(400, c.AbortWithError(400, dbError))
 		return
 	}
 
