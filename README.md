@@ -34,6 +34,7 @@
 
 - gin: Web Server
 - gorm: 数据库操作
+- goquery: 网页解析
 - gin-swagger \ swag:  构建 Swagger API
 - fresh: 启动并监听 Web Server
 - viper: 读取用户配置信息

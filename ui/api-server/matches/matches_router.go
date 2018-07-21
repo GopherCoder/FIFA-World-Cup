@@ -28,14 +28,14 @@ func MatchHandler(c *gin.Context) {
 
 	number, _ := strconv.Atoi(id)
 
-	if number > 32 || number < 0 {
-		c.AbortWithError(400, ErrorMatchNumber)
+	if number > 64 || number < 0 {
+		c.JSON(400, c.AbortWithError(400, ErrorMatchNumber))
 		return
 	}
 
 	var match model.Match
 	if dbError := initiator.POSTGRES.Where("id = ?", id).First(&match).Error; dbError != nil {
-		c.AbortWithError(400, dbError)
+		c.JSON(400, c.AbortWithError(400, dbError))
 		return
 	}
 
@@ -68,7 +68,7 @@ type ListMatchParam struct {
 func ListMatchHandler(c *gin.Context) {
 	var param ListMatchParam
 	if err := c.ShouldBindQuery(&param); err != nil {
-		c.AbortWithError(400, err)
+		c.JSON(400, c.AbortWithError(400, err))
 		return
 	}
 
@@ -76,14 +76,14 @@ func ListMatchHandler(c *gin.Context) {
 
 	if param.Search != "" {
 		if dbError := initiator.POSTGRES.Where("country_left LIKE ?", fmt.Sprintf("%%%s%%", param.Search)).Find(&matches).Error; dbError != nil {
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
 
 	if param.Return == "all_list" {
 		if dbError := initiator.POSTGRES.Find(&matches).Error; dbError != nil {
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
@@ -91,14 +91,14 @@ func ListMatchHandler(c *gin.Context) {
 	if param.Match != "" {
 		if dbError := initiator.POSTGRES.Where("match_number = ?", param.Match).Find(&matches).Error; dbError != nil {
 
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
 
 	if param.Group != "" {
 		if dbError := initiator.POSTGRES.Where("group_name LIKE ?", fmt.Sprintf("%%%s%%", param.Group)).Error; dbError != nil {
-			c.AbortWithError(400, dbError)
+			c.JSON(400, c.AbortWithError(400, dbError))
 			return
 		}
 	}
