@@ -31,7 +31,16 @@
 ---
 
 
-- make 
+- make install 
+
+安装项目依赖库
+
+- make dev 
+
+启动web server
+
+
+
 
 ### 4. 技术
 
