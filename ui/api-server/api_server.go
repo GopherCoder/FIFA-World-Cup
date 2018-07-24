@@ -65,7 +65,7 @@ func APIServerInit(r *gin.Engine) {
 	v1 := r.Group("/v1/api")
 	indexRegistry(v1)
 	adminsRegistry(v1)
-
+	downloadExcel(v1)
 	v1.Use(controller.AuthRequired())
 	{
 		matchesRegistry(v1)
@@ -100,6 +100,14 @@ func adminsRegistry(r *gin.RouterGroup) {
 
 }
 
+
+var ExportSavePath = "/Users/xiewei/go/src/FIFA-World-Cup/export"
+
+func downloadExcel(r *gin.RouterGroup){
+	fmt.Println(http.Dir(ExportSavePath))
+	r.StaticFS("/export", http.Dir(ExportSavePath))
+}
+
 func matchesRegistry(r *gin.RouterGroup) {
 	r.GET("/matches/:matchID", matches.MatchHandler)
 	r.GET("/matches", matches.ListMatchHandler)
@@ -124,7 +132,9 @@ func playerRegistry(r *gin.RouterGroup) {
 
 func coachesRegistry(r *gin.RouterGroup) {
 	r.GET("/coaches", coaches.ShowAllCoachHandler)
-	r.GET("/coaches/:coachID", coaches.ShowCoachHandler)
+	r.GET("/coaches/number/:coachID", coaches.ShowCoachHandler)
+	r.GET("/coach/people/export", coaches.ExportHandler)
+	r.GET("/coach/people/two", coaches.ExportByCSV)
 }
 
 func statisticsRegistry(r *gin.RouterGroup) {

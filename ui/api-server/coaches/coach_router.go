@@ -8,6 +8,11 @@ import (
 	"github.com/pkg/errors"
 	"net/http"
 	"strconv"
+	"github.com/tealeg/xlsx"
+	"time"
+	"bytes"
+	"io/ioutil"
+	"encoding/csv"
 )
 
 var (
@@ -101,4 +106,87 @@ func ShowAllCoachHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, result)
+}
+
+
+func ExportHandler(c *gin.Context){
+	var coaches []model.Coach
+
+	if dbError := initiator.POSTGRES.Find(&coaches).Error;dbError!=nil{
+		c.JSON(400, c.AbortWithError(400, dbError))
+		return
+	}
+
+	file := xlsx.NewFile()
+	sheet, err := file.AddSheet("教练信息")
+	if err !=nil {
+		return
+	}
+	headers := []string{"id", "country_name", "name", "image_address"}
+	row := sheet.AddRow()
+	var cell *xlsx.Cell
+	for _, header := range headers{
+		cell = row.AddCell()
+		cell.Value = header
+	}
+
+	for _, coach := range coaches{
+		Id  := strconv.Itoa(int(coach.ID))
+		values := []string{
+			string(Id),
+			coach.CountryName,
+			coach.Name,
+			coach.ImageURL,
+		}
+		row := sheet.AddRow()
+		for _, value := range values{
+			cell = row.AddCell()
+			cell.Value = value
+		}
+	}
+	timeDelta := strconv.Itoa(int(time.Now().Unix()))
+	fileName := fmt.Sprintf("tag_%s_.xls", timeDelta)
+	var buffer bytes.Buffer
+	if err := file.Write(&buffer); err != nil {
+		return
+	}
+	r := bytes.NewReader(buffer.Bytes())
+	c.Header("Content-Type", "application/vnd.ms-excel")
+	c.Header("Content-Disposition", "attachment; filename=" + fileName)
+	c.Header("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+	//http.ServeContent(c.Writer, c.Request, fileName,time.Time{}, r)
+	content, _ := ioutil.ReadAll(r)
+	c.Data(http.StatusOK, c.GetHeader("Content-Type"),content)
+}
+
+
+func ExportByCSV(c *gin.Context) {
+	var coaches []model.Coach
+
+	if dbError := initiator.POSTGRES.Find(&coaches).Error;dbError!=nil{
+		c.JSON(400, c.AbortWithError(400, dbError))
+		return
+	}
+	timeDelta := strconv.Itoa(int(time.Now().Unix()))
+	fileName := fmt.Sprintf("coach_%s_.xls", timeDelta)
+	buf := new(bytes.Buffer)
+	w := csv.NewWriter(buf)
+	buf.WriteString("\xEF\xBB\xBF")
+	headers := []string{"id", "country_name", "name", "image_address"}
+	w.Write(headers)
+    for _, coach := range coaches{
+    	s := make([]string, len(headers))
+    	s[0] = strconv.Itoa(int(coach.ID))
+    	s[1] = coach.CountryName
+    	s[2] = coach.Name
+    	s[3] = coach.ImageURL
+    	w.Write(s)
+    	w.Flush()
+    }
+
+	c.Header("Content-Type", "application/vnd.ms-excel")
+	c.Header("Content-Disposition", "attachment; filename=" + fileName)
+	c.Header("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    r, _ := ioutil.ReadAll(buf)
+	c.Data(http.StatusOK, c.GetHeader("Content-Type"), r)
 }
