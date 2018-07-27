@@ -74,4 +74,16 @@ API :
 ![PostMan-API](images/PostMan-API.png)
 
 
+### 6. 数据
 
+抓取有困难，或者存在问题的，可以使用 db/fifaworldcup.sql 导入数据库
+
+
+### 7. 视频版
+
+[网易云课堂](http://study.163.com/course/courseMain.htm?courseId=1005784012&share=2&shareId=1026591096)
+
+
+不喜欢视频就看源代码，有问题，我也会解答。
+
+微信：wu_xiaoshen
