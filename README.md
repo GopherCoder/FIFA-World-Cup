@@ -87,3 +87,8 @@ API :
 不喜欢视频就看源代码，有问题，我也会解答。
 
 微信：wu_xiaoshen
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starcharts.herokuapp.com/GopherCoder/FIFA-World-Cup.svg)](https://starcharts.herokuapp.com/GopherCoder/FIFA-World-Cup)
